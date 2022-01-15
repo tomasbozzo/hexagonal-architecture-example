@@ -1,13 +1,15 @@
 package com.tomasbozzo.hea.infrastructure.adapter.transport.controller;
 
 import com.tomasbozzo.hea.application.usecase.CreateThingUseCase;
+import com.tomasbozzo.hea.application.usecase.GetAllThingsUseCase;
 import com.tomasbozzo.hea.application.usecase.GetThingUseCase;
+import com.tomasbozzo.hea.domain.model.Thing;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
-import static org.springframework.http.ResponseEntity.internalServerError;
 import static org.springframework.http.ResponseEntity.ok;
 
 @RestController
@@ -16,10 +18,11 @@ public class ThingController {
 
     private final CreateThingUseCase createThingUseCase;
     private final GetThingUseCase getThingUseCase;
+    private final GetAllThingsUseCase getAllThingsUseCase;
 
     @PostMapping("/things")
     @ResponseBody
-    Mono<ResponseEntity<ThingDto>> postThing() {
+    Mono<ResponseEntity<ThingPostResponseDto>> postThing() {
         return createThingUseCase.execute()
                 .map(response -> ok(toThingDto(response)));
     }
@@ -31,6 +34,21 @@ public class ThingController {
                 .switchIfEmpty(notFound());
     }
 
+    @GetMapping("/things")
+    Flux<ThingDto> getThings() {
+        return getAllThingsUseCase.execute().things()
+                .map(this::toThingDto);
+    }
+
+    private ThingDto toThingDto(Thing thing) {
+        ThingDto thingDto = new ThingDto();
+
+        thingDto.setId(thing.getId().getValue());
+        thingDto.setName(thing.getName());
+
+        return thingDto;
+    }
+
     private ResponseEntity<ThingDto> toThingDtoResponse(GetThingUseCase.Response response) {
         ThingDto thingDto = new ThingDto();
 
@@ -40,8 +58,8 @@ public class ThingController {
         return ok(thingDto);
     }
 
-    private ThingDto toThingDto(CreateThingUseCase.Response response) {
-        ThingDto thingDto = new ThingDto();
+    private ThingPostResponseDto toThingDto(CreateThingUseCase.Response response) {
+        ThingPostResponseDto thingDto = new ThingPostResponseDto();
         thingDto.setId(response.getThingId().getValue());
 
         return thingDto;
