@@ -9,16 +9,16 @@ import java.util.function.Supplier;
 public class ValidationUtils {
 
     private static <T, E extends Exception> void validate(T t, Predicate<T> predicate, Supplier<E> exceptionSupplier) throws E {
-        if (predicate.test(t)) {
+        if (predicate.negate().test(t)) {
             throw exceptionSupplier.get();
         }
     }
 
     public static <E extends Exception> void validateNotBlank(CharSequence charSequence, Supplier<E> exceptionSupplier) throws E {
-        validate(charSequence, StringUtils::isBlank, exceptionSupplier);
+        validate(charSequence, StringUtils::isNotBlank, exceptionSupplier);
     }
 
     public static <E extends Exception> void validateNotNull(Object object, Supplier<E> exceptionSupplier) throws E {
-        validate(object, Objects::isNull, exceptionSupplier);
+        validate(object, Objects::nonNull, exceptionSupplier);
     }
 }
