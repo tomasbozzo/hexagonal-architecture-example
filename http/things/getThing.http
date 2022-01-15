@@ -1,0 +1,4 @@
+GET http://localhost:8080/things/f9eda97d-44db-4f76-b8fc-8bbc7dec903e
+Content-Type: application/json
+
+###
