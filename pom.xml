@@ -16,10 +16,10 @@
 
     <modules>
         <module>bom</module>
+        <module>common</module>
         <module>domain</module>
         <module>application</module>
         <module>infrastructure</module>
-        <module>common</module>
     </modules>
 
     <dependencies>

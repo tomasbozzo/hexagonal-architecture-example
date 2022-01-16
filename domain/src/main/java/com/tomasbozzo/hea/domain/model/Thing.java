@@ -18,7 +18,7 @@ public class Thing {
     @Getter
     private List<SubThing> subThings;
 
-    public Thing(ThingId id, String name, List<SubThing> subThings) {
+    Thing(ThingId id, String name, List<SubThing> subThings) {
         validateId(id);
         validateName(name);
         validateSubThings(subThings);

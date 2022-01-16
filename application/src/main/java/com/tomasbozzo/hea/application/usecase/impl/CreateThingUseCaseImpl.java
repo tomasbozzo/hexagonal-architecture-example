@@ -15,7 +15,7 @@ public class CreateThingUseCaseImpl implements CreateThingUseCase {
 
     @Override
     public Mono<Response> execute() {
-        return thingRepository.save(createEmptyThing())
+        return thingRepository.create(createEmptyThing())
                 .map(this::toResponse);
     }
 
