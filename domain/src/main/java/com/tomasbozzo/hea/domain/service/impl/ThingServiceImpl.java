@@ -6,7 +6,6 @@ import com.tomasbozzo.hea.domain.model.Thing;
 import com.tomasbozzo.hea.domain.repository.ThingRepository;
 import com.tomasbozzo.hea.domain.service.ThingService;
 import lombok.RequiredArgsConstructor;
-import reactor.core.publisher.Mono;
 
 @RequiredArgsConstructor
 public class ThingServiceImpl implements ThingService {
@@ -15,9 +14,9 @@ public class ThingServiceImpl implements ThingService {
     private final DomainEventPublisher eventPublisher;
 
     @Override
-    public Mono<Thing> create(Thing thing) {
-        return repository.create(thing)
-                .flatMap(t -> eventPublisher.publish(new ThingCreatedEvent(t.getId())).then(Mono.just(t)));
-
+    public Thing create(Thing thing) {
+        var createdThing = repository.create(thing);
+        eventPublisher.publish(new ThingCreatedEvent(createdThing.getId()));
+        return createdThing;
     }
 }

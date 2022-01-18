@@ -1,22 +1,21 @@
 package com.tomasbozzo.hea.application.usecase;
 
 import com.tomasbozzo.hea.domain.model.Thing;
-import reactor.core.publisher.Mono;
+
+import java.util.Optional;
 
 import static com.tomasbozzo.hea.common.utils.ValidationUtils.validateNotBlank;
 
 public interface GetThingUseCase {
-    Mono<Response> execute(Request request);
+    Optional<Thing> execute(Request request);
 
-    record Request(String id) {
+    record Request(String thingId) {
         public Request {
-            validateId(id);
+            validateThingId(thingId);
         }
 
-        private void validateId(String id) {
-            validateNotBlank(id, () -> new IllegalArgumentException("The id must not be null"));
+        private void validateThingId(String thingId) {
+            validateNotBlank(thingId, () -> new IllegalArgumentException("The thingId must not be null"));
         }
     }
-
-    record Response(Thing thing) {}
 }

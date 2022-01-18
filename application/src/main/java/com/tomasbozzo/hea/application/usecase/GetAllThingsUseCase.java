@@ -1,11 +1,9 @@
 package com.tomasbozzo.hea.application.usecase;
 
 import com.tomasbozzo.hea.domain.model.Thing;
-import reactor.core.publisher.Flux;
+
+import java.util.List;
 
 public interface GetAllThingsUseCase {
-    Response execute();
-
-    record Response(Flux<Thing> things) {
-    }
+    List<Thing> execute();
 }

@@ -1,8 +1,9 @@
 package com.tomasbozzo.hea.application.projection.repository;
 
 import com.tomasbozzo.hea.domain.model.Thing;
-import reactor.core.publisher.Flux;
+
+import java.util.List;
 
 public interface ThingProjectionRepository {
-    Flux<Thing> findAllThings();
+    List<Thing> findAllThings();
 }

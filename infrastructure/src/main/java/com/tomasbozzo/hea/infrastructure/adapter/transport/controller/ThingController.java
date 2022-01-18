@@ -7,8 +7,9 @@ import com.tomasbozzo.hea.domain.model.Thing;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import reactor.core.publisher.Flux;
-import reactor.core.publisher.Mono;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 import static org.springframework.http.ResponseEntity.ok;
 
@@ -22,22 +23,24 @@ public class ThingController {
 
     @PostMapping("/things")
     @ResponseBody
-    Mono<ResponseEntity<ThingPostResponseDto>> postThing() {
-        return createThingUseCase.execute()
-                .map(response -> ok(toThingDto(response)));
+    ResponseEntity<ThingPostResponseDto> postThing() {
+        return ok(toThingDto(createThingUseCase.execute()));
     }
 
     @GetMapping("/things/{id}")
-    Mono<ResponseEntity<ThingDto>> getThing(@PathVariable String id) {
+    ResponseEntity<ThingDto> getThing(@PathVariable String id) {
         return getThingUseCase.execute(new GetThingUseCase.Request(id))
                 .map(this::toThingDtoResponse)
-                .switchIfEmpty(notFound());
+                .orElseGet(this::notFound);
     }
 
     @GetMapping("/things")
-    Flux<ThingDto> getThings() {
-        return getAllThingsUseCase.execute().things()
-                .map(this::toThingDto);
+    ResponseEntity<List<ThingDto>> getThings() {
+        List<ThingDto> things = getAllThingsUseCase.execute().stream()
+                .map(this::toThingDto)
+                .collect(Collectors.toList());
+
+        return ok(things);
     }
 
     private ThingDto toThingDto(Thing thing) {
@@ -49,11 +52,11 @@ public class ThingController {
         return thingDto;
     }
 
-    private ResponseEntity<ThingDto> toThingDtoResponse(GetThingUseCase.Response response) {
+    private ResponseEntity<ThingDto> toThingDtoResponse(Thing thing) {
         ThingDto thingDto = new ThingDto();
 
-        thingDto.setId(response.thing().getId().getValue());
-        thingDto.setName(response.thing().getName());
+        thingDto.setId(thing.getId().getValue());
+        thingDto.setName(thing.getName());
 
         return ok(thingDto);
     }
@@ -65,7 +68,7 @@ public class ThingController {
         return thingDto;
     }
 
-    private <T> Mono<ResponseEntity<T>> notFound() {
-        return Mono.just(ResponseEntity.notFound().build());
+    private <T> ResponseEntity<T> notFound() {
+        return ResponseEntity.notFound().build();
     }
 }

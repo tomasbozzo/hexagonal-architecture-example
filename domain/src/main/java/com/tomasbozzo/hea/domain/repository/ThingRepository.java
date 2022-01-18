@@ -2,9 +2,11 @@ package com.tomasbozzo.hea.domain.repository;
 
 import com.tomasbozzo.hea.domain.model.Thing;
 import com.tomasbozzo.hea.domain.model.ThingId;
-import reactor.core.publisher.Mono;
+
+import java.util.Optional;
 
 public interface ThingRepository {
-    Mono<Thing> create(Thing thing);
-    Mono<Thing> findById(ThingId thingId);
+    Thing create(Thing thing);
+
+    Optional<Thing> findById(ThingId thingId);
 }

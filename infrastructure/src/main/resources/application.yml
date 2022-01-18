@@ -1,8 +1,7 @@
-db-url: postgresql://localhost:5432/example
 spring:
-  r2dbc:
-    url: r2dbc:${db-url}
+  flyway:
+    enabled: true
+  datasource:
+    url: jdbc:postgresql://localhost:5432/example
     username: example
     password: example
-  flyway:
-    url: jdbc:${db-url}
