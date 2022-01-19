@@ -1,4 +1,4 @@
 package com.tomasbozzo.hea.domain.event.model;
 
-public interface DomainEvent {
+public interface Event {
 }
