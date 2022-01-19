@@ -15,6 +15,6 @@ public class GetThingUseCaseImpl implements GetThingUseCase {
 
     @Override
     public Optional<Thing> execute(Request request) {
-        return thingRepository.findById(new ThingId(request.thingId()));
+        return thingRepository.findById(new ThingId(request.getThingId()));
     }
 }

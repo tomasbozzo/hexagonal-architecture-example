@@ -1,7 +1,9 @@
 package com.tomasbozzo.hea.domain.event.model;
 
 import com.tomasbozzo.hea.domain.model.ThingId;
+import lombok.Value;
 
-public record ThingCreatedEvent(ThingId thingId) implements DomainEvent {
-
+@Value
+public class ThingCreatedEvent implements DomainEvent {
+    ThingId thingId;
 }
