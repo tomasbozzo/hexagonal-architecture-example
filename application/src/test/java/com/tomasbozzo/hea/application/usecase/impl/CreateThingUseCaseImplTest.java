@@ -1,7 +1,6 @@
 package com.tomasbozzo.hea.application.usecase.impl;
 
 import com.tomasbozzo.hea.application.AbstractApplicationTest;
-import com.tomasbozzo.hea.application.config.ApplicationTestConfig;
 import com.tomasbozzo.hea.application.usecase.CreateThingUseCase;
 import com.tomasbozzo.hea.domain.model.Thing;
 import com.tomasbozzo.hea.domain.model.ThingFactory;
@@ -9,13 +8,10 @@ import com.tomasbozzo.hea.domain.model.ThingId;
 import com.tomasbozzo.hea.domain.service.ThingService;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.ArgumentCaptor;
 import org.mockito.Captor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import static java.util.Collections.emptyList;
 import static org.assertj.core.api.Assertions.assertThat;
