@@ -4,6 +4,7 @@ import com.tomasbozzo.hea.application.usecase.CreateThingUseCase;
 import com.tomasbozzo.hea.application.usecase.GetAllThingsUseCase;
 import com.tomasbozzo.hea.application.usecase.GetThingUseCase;
 import com.tomasbozzo.hea.domain.model.Thing;
+import com.tomasbozzo.hea.domain.model.ThingId;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -29,7 +30,7 @@ public class ThingController {
 
     @GetMapping("/things/{id}")
     ResponseEntity<ThingDto> getThing(@PathVariable String id) {
-        return getThingUseCase.execute(new GetThingUseCase.Request(id))
+        return getThingUseCase.execute(new GetThingUseCase.Request(new ThingId(id)))
                 .map(this::toThingDtoResponse)
                 .orElseGet(this::notFound);
     }

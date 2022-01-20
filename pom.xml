@@ -37,7 +37,7 @@
         <dependencies>
             <dependency>
                 <groupId>com.tomasbozzo.hea</groupId>
-                <artifactId>hea-bom</artifactId>
+                <artifactId>bom</artifactId>
                 <version>1.0-SNAPSHOT</version>
                 <type>pom</type>
                 <scope>import</scope>
