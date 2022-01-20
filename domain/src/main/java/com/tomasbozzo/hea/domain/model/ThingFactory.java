@@ -1,8 +1,12 @@
 package com.tomasbozzo.hea.domain.model;
 
+import lombok.AccessLevel;
+import lombok.NoArgsConstructor;
+
 import java.util.ArrayList;
 import java.util.List;
 
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class ThingFactory {
     public static Thing createEmptyThing() {
         return new Thing(new ThingId(), "an empty thing", new ArrayList<>());
