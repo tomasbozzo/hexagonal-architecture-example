@@ -7,6 +7,8 @@ import com.tomasbozzo.hea.domain.repository.ThingRepository;
 import com.tomasbozzo.hea.domain.service.ThingService;
 import lombok.RequiredArgsConstructor;
 
+import static com.tomasbozzo.hea.common.utils.ValidationUtils.validateNotNull;
+
 @RequiredArgsConstructor
 public class ThingServiceImpl implements ThingService {
 
@@ -15,8 +17,14 @@ public class ThingServiceImpl implements ThingService {
 
     @Override
     public Thing create(Thing thing) {
+        validateThing(thing);
+
         var createdThing = repository.create(thing);
         eventPublisher.publish(new ThingCreatedEvent(createdThing));
         return createdThing;
+    }
+
+    private void validateThing(Thing thing) {
+        validateNotNull(thing, () -> new IllegalArgumentException("The thing must not be null"));
     }
 }
