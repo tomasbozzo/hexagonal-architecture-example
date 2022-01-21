@@ -5,6 +5,7 @@ import com.tomasbozzo.hea.application.usecase.GetAllThingsUseCase;
 import com.tomasbozzo.hea.application.usecase.GetThingUseCase;
 import com.tomasbozzo.hea.domain.model.Thing;
 import com.tomasbozzo.hea.domain.model.ThingId;
+import com.tomasbozzo.hea.infrastructure.adapter.transport.controller.exception.ApiException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import static org.springframework.http.HttpStatus.NOT_FOUND;
 import static org.springframework.http.ResponseEntity.ok;
 
 @RestController
@@ -32,7 +34,7 @@ public class ThingController {
     ResponseEntity<ThingDto> getThing(@PathVariable String id) {
         return getThingUseCase.execute(new GetThingUseCase.Request(new ThingId(id)))
                 .map(this::toThingDtoResponse)
-                .orElseGet(this::notFound);
+                .orElseThrow(() -> new ApiException("The thing was not found", NOT_FOUND));
     }
 
     @GetMapping("/things")
@@ -67,9 +69,5 @@ public class ThingController {
         thingDto.setId(response.getThingId().getValue());
 
         return thingDto;
-    }
-
-    private <T> ResponseEntity<T> notFound() {
-        return ResponseEntity.notFound().build();
     }
 }
