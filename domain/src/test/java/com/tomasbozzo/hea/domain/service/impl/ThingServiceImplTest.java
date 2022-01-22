@@ -7,6 +7,7 @@ import static org.assertj.core.api.InstanceOfAssertFactories.type;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
+import com.tomasbozzo.hea.domain.AbstractDomainTest;
 import com.tomasbozzo.hea.domain.event.EventPublisher;
 import com.tomasbozzo.hea.domain.event.model.Event;
 import com.tomasbozzo.hea.domain.event.model.ThingCreatedEvent;
@@ -16,23 +17,20 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.ArgumentCaptor;
 import org.mockito.Captor;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
-import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.mock.mockito.MockBean;
 
-@ExtendWith(MockitoExtension.class)
-class ThingServiceImplTest {
+class ThingServiceImplTest extends AbstractDomainTest {
 
-  @InjectMocks
+  @Autowired
   private ThingServiceImpl service;
 
-  @Mock
+  @MockBean
   private ThingRepository repository;
 
-  @Mock
+  @MockBean
   private EventPublisher eventPublisher;
 
   @Captor
