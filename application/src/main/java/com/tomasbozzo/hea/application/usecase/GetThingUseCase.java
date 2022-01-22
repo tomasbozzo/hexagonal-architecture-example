@@ -1,29 +1,29 @@
 package com.tomasbozzo.hea.application.usecase;
 
-import com.tomasbozzo.hea.domain.model.Thing;
-import com.tomasbozzo.hea.domain.model.ThingId;
-import lombok.Getter;
-
-import java.util.Optional;
-
 import static com.tomasbozzo.hea.common.utils.ValidationUtils.validateNotNull;
 
+import com.tomasbozzo.hea.domain.model.Thing;
+import com.tomasbozzo.hea.domain.model.ThingId;
+import java.util.Optional;
+import lombok.Getter;
+
 public interface GetThingUseCase {
-    Optional<Thing> execute(Request request);
 
-    class Request {
+  Optional<Thing> execute(Request request);
 
-        @Getter
-        private final ThingId thingId;
+  class Request {
 
-        public Request(ThingId thingId) {
-            validateThingId(thingId);
+    @Getter
+    private final ThingId thingId;
 
-            this.thingId = thingId;
-        }
+    public Request(ThingId thingId) {
+      validateThingId(thingId);
 
-        private void validateThingId(ThingId thingId) {
-            validateNotNull(thingId, () -> new IllegalArgumentException("The thing id must not be null"));
-        }
+      this.thingId = thingId;
     }
+
+    private void validateThingId(ThingId thingId) {
+      validateNotNull(thingId, () -> new IllegalArgumentException("The thing id must not be null"));
+    }
+  }
 }

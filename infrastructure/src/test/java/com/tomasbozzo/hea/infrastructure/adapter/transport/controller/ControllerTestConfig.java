@@ -12,24 +12,24 @@ import org.springframework.context.annotation.Import;
 
 @Configuration
 @Import({
-        ControllerConfig.class,
-        TestController.class,
+    ControllerConfig.class,
+    TestController.class,
 })
 public class ControllerTestConfig {
 
-    @Bean
-    CreateThingUseCase createThingUseCase() {
-        return Mockito.mock(CreateThingUseCase.class);
-    }
+  @Bean
+  CreateThingUseCase createThingUseCase() {
+    return Mockito.mock(CreateThingUseCase.class);
+  }
 
-    @Bean
-    GetThingUseCase getThingUseCase() {
-        return Mockito.mock(GetThingUseCase.class);
-    }
+  @Bean
+  GetThingUseCase getThingUseCase() {
+    return Mockito.mock(GetThingUseCase.class);
+  }
 
-    @Bean
-    GetAllThingsUseCase getAllThingsUseCase() {
-        return Mockito.mock(GetAllThingsUseCase.class);
-    }
+  @Bean
+  GetAllThingsUseCase getAllThingsUseCase() {
+    return Mockito.mock(GetAllThingsUseCase.class);
+  }
 }
 

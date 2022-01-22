@@ -5,15 +5,15 @@ import org.springframework.data.domain.Persistable;
 
 public abstract class AbstractJpaEntity implements Persistable<String> {
 
-    @Transient
-    private boolean newEntity;
+  @Transient
+  private boolean newEntity;
 
-    public void setAsNew() {
-        newEntity = true;
-    }
+  public void setAsNew() {
+    newEntity = true;
+  }
 
-    @Override
-    public boolean isNew() {
-        return newEntity;
-    }
+  @Override
+  public boolean isNew() {
+    return newEntity;
+  }
 }

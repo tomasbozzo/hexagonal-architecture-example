@@ -9,27 +9,27 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Import;
 
 @Import({
-        ApplicationConfig.class,
+    ApplicationConfig.class,
 })
 public class ApplicationTestConfig {
 
-    @Bean
-    EventPublisher domainEventPublisher() {
-        return Mockito.mock(EventPublisher.class);
-    }
+  @Bean
+  EventPublisher domainEventPublisher() {
+    return Mockito.mock(EventPublisher.class);
+  }
 
-    @Bean
-    ThingProjectionRepository thingProjectionRepository() {
-        return Mockito.mock(ThingProjectionRepository.class);
-    }
+  @Bean
+  ThingProjectionRepository thingProjectionRepository() {
+    return Mockito.mock(ThingProjectionRepository.class);
+  }
 
-    @Bean
-    ThingRepository thingRepository() {
-        return Mockito.mock(ThingRepository.class);
-    }
+  @Bean
+  ThingRepository thingRepository() {
+    return Mockito.mock(ThingRepository.class);
+  }
 
-    @Bean
-    ThingService thingService() {
-        return Mockito.mock(ThingService.class);
-    }
+  @Bean
+  ThingService thingService() {
+    return Mockito.mock(ThingService.class);
+  }
 }

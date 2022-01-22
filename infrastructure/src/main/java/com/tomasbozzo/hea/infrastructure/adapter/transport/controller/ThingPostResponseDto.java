@@ -4,5 +4,6 @@ import lombok.Data;
 
 @Data
 public class ThingPostResponseDto {
-    private String id;
+
+  private String id;
 }

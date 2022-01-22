@@ -5,5 +5,6 @@ import lombok.Value;
 
 @Value
 public class ThingCreatedEvent implements Event {
-    Thing thing;
+
+  Thing thing;
 }

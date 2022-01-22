@@ -8,11 +8,12 @@ import org.springframework.context.annotation.Import;
 
 @Configuration
 @Import({
-        ControllerConfig.class,
-        MockEventPublisher.class,
-        SpringDataConfig.class,
-        ThingJpaRepository.class,
-        ThingProjectionJpaRepository.class,
+    ControllerConfig.class,
+    MockEventPublisher.class,
+    SpringDataConfig.class,
+    ThingJpaRepository.class,
+    ThingProjectionJpaRepository.class,
 })
 public class AdapterConfig {
+
 }

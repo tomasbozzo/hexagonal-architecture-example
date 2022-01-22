@@ -4,6 +4,7 @@ import lombok.Data;
 
 @Data
 public class ThingDto {
-    private String id;
-    private String name;
+
+  private String id;
+  private String name;
 }

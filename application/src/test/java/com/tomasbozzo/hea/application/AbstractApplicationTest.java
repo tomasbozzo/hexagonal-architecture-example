@@ -8,4 +8,5 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 @ContextConfiguration(classes = ApplicationTestConfig.class)
 @ExtendWith(SpringExtension.class)
 public abstract class AbstractApplicationTest {
+
 }

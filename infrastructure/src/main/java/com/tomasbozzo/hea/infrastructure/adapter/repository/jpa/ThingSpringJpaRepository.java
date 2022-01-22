@@ -5,4 +5,5 @@ import org.springframework.data.repository.CrudRepository;
 
 
 public interface ThingSpringJpaRepository extends CrudRepository<ThingJpaEntity, String> {
+
 }

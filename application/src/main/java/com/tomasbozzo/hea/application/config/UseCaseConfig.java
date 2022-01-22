@@ -8,9 +8,10 @@ import org.springframework.context.annotation.Import;
 
 @Configuration
 @Import({
-        CreateThingUseCaseImpl.class,
-        GetAllThingsUseCaseImpl.class,
-        GetThingUseCaseImpl.class,
+    CreateThingUseCaseImpl.class,
+    GetAllThingsUseCaseImpl.class,
+    GetThingUseCaseImpl.class,
 })
 public class UseCaseConfig {
+
 }

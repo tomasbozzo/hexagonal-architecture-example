@@ -5,11 +5,13 @@ import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 
 public interface CreateThingUseCase {
-    Response execute();
 
-    @RequiredArgsConstructor
-    @Getter
-    class Response {
-        private final ThingId thingId;
-    }
+  Response execute();
+
+  @RequiredArgsConstructor
+  @Getter
+  class Response {
+
+    private final ThingId thingId;
+  }
 }

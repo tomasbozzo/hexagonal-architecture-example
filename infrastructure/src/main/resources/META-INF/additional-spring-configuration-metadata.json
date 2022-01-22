@@ -1,8 +1,0 @@
-{
-  "properties": [
-    {
-      "name": "db-url",
-      "type": "java.lang.String",
-      "description": "URL for the database configuration."
-    }
-  ] }

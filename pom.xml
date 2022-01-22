@@ -1,83 +1,83 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-    <modelVersion>4.0.0</modelVersion>
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.tomasbozzo.hea</groupId>
-    <artifactId>parent</artifactId>
-    <version>1.0-SNAPSHOT</version>
-    <packaging>pom</packaging>
+  <groupId>com.tomasbozzo.hea</groupId>
+  <artifactId>parent</artifactId>
+  <version>1.0-SNAPSHOT</version>
+  <packaging>pom</packaging>
 
-    <properties>
-        <maven.compiler.source>11</maven.compiler.source>
-        <maven.compiler.target>11</maven.compiler.target>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <sonar.organization>tomasbozzo</sonar.organization>
-        <sonar.projectName>Hexagonal Architecture Example</sonar.projectName>
-        <sonar.host.url>https://sonarcloud.io</sonar.host.url>
-    </properties>
+  <properties>
+    <maven.compiler.source>11</maven.compiler.source>
+    <maven.compiler.target>11</maven.compiler.target>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <sonar.organization>tomasbozzo</sonar.organization>
+    <sonar.projectName>Hexagonal Architecture Example</sonar.projectName>
+    <sonar.host.url>https://sonarcloud.io</sonar.host.url>
+  </properties>
 
-    <modules>
-        <module>bom</module>
-        <module>common</module>
-        <module>domain</module>
-        <module>application</module>
-        <module>infrastructure</module>
-    </modules>
+  <modules>
+    <module>bom</module>
+    <module>common</module>
+    <module>domain</module>
+    <module>application</module>
+    <module>infrastructure</module>
+  </modules>
 
+  <dependencies>
+    <dependency>
+      <groupId>org.projectlombok</groupId>
+      <artifactId>lombok</artifactId>
+      <optional>true</optional>
+    </dependency>
+  </dependencies>
+
+  <dependencyManagement>
     <dependencies>
-        <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
-            <optional>true</optional>
-        </dependency>
+      <dependency>
+        <groupId>com.tomasbozzo.hea</groupId>
+        <artifactId>bom</artifactId>
+        <version>1.0-SNAPSHOT</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
     </dependencies>
+  </dependencyManagement>
 
-    <dependencyManagement>
-        <dependencies>
-            <dependency>
-                <groupId>com.tomasbozzo.hea</groupId>
-                <artifactId>bom</artifactId>
-                <version>1.0-SNAPSHOT</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
-        </dependencies>
-    </dependencyManagement>
+  <build>
+    <pluginManagement>
+      <plugins>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-surefire-plugin</artifactId>
+          <version>2.22.2</version>
+        </plugin>
+      </plugins>
+    </pluginManagement>
 
-    <build>
-        <pluginManagement>
-            <plugins>
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-surefire-plugin</artifactId>
-                    <version>2.22.2</version>
-                </plugin>
-            </plugins>
-        </pluginManagement>
-
-        <plugins>
-            <plugin>
-                <groupId>org.jacoco</groupId>
-                <artifactId>jacoco-maven-plugin</artifactId>
-                <version>0.8.7</version>
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>prepare-agent</goal>
-                        </goals>
-                    </execution>
-                    <execution>
-                        <id>jacoco-report</id>
-                        <phase>test</phase>
-                        <goals>
-                            <goal>report</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-        </plugins>
-    </build>
+    <plugins>
+      <plugin>
+        <groupId>org.jacoco</groupId>
+        <artifactId>jacoco-maven-plugin</artifactId>
+        <version>0.8.7</version>
+        <executions>
+          <execution>
+            <goals>
+              <goal>prepare-agent</goal>
+            </goals>
+          </execution>
+          <execution>
+            <id>jacoco-report</id>
+            <phase>test</phase>
+            <goals>
+              <goal>report</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
+  </build>
 
 </project>

@@ -6,10 +6,11 @@ import lombok.Getter;
 
 @Getter
 public class ApiError {
-    private final String description;
 
-    @JsonCreator
-    public ApiError(@JsonProperty("description") String description) {
-        this.description = description;
-    }
+  private final String description;
+
+  @JsonCreator
+  public ApiError(@JsonProperty("description") String description) {
+    this.description = description;
+  }
 }

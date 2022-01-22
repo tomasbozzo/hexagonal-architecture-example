@@ -6,7 +6,8 @@ import org.springframework.context.annotation.Import;
 
 @Configuration
 @Import({
-        ThingServiceImpl.class,
+    ThingServiceImpl.class,
 })
 public class DomainConfig {
+
 }

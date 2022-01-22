@@ -7,10 +7,10 @@ import org.springframework.test.web.servlet.MockMvc;
 
 @WebMvcTest
 @ContextConfiguration(classes = {
-        ControllerTestConfig.class,
+    ControllerTestConfig.class,
 })
 public abstract class AbstractControllerTest {
 
-    @Autowired
-    protected MockMvc mockMvc;
+  @Autowired
+  protected MockMvc mockMvc;
 }

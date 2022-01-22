@@ -5,7 +5,8 @@ import org.springframework.context.annotation.Import;
 
 @Configuration
 @Import({
-        UseCaseConfig.class,
+    UseCaseConfig.class,
 })
 public class ApplicationConfig {
+
 }

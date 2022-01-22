@@ -9,15 +9,15 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 @ControllerAdvice
 public class ControllerExceptionHandler extends ResponseEntityExceptionHandler {
 
-    @ExceptionHandler(ApiException.class)
-    public ResponseEntity<ApiError> handleApiException(ApiException exception) {
-        return new ResponseEntity<>(new ApiError(exception.getMessage()), exception.getHttpStatus());
-    }
+  @ExceptionHandler(ApiException.class)
+  public ResponseEntity<ApiError> handleApiException(ApiException exception) {
+    return new ResponseEntity<>(new ApiError(exception.getMessage()), exception.getHttpStatus());
+  }
 
-    @ExceptionHandler(Exception.class)
-    public ResponseEntity<ApiError> handleUnhandled(Exception exception) {
-        return ResponseEntity
-                .internalServerError()
-                .body(new ApiError("Internal server error"));
-    }
+  @ExceptionHandler(Exception.class)
+  public ResponseEntity<ApiError> handleUnhandled(Exception exception) {
+    return ResponseEntity
+        .internalServerError()
+        .body(new ApiError("Internal server error"));
+  }
 }

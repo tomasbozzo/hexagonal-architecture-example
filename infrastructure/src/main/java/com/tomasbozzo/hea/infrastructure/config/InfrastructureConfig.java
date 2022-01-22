@@ -7,9 +7,10 @@ import org.springframework.context.annotation.Import;
 
 @Configuration
 @Import({
-        ApplicationConfig.class,
-        AdapterConfig.class,
-        DomainConfig.class,
+    ApplicationConfig.class,
+    AdapterConfig.class,
+    DomainConfig.class,
 })
 public class InfrastructureConfig {
+
 }
