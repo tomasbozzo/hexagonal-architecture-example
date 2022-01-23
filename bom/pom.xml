@@ -13,7 +13,6 @@
   <packaging>pom</packaging>
 
   <properties>
-    <java.version>17</java.version>
     <spring.boot.version>2.6.2</spring.boot.version>
   </properties>
 
@@ -35,6 +34,13 @@
         <groupId>com.tomasbozzo.hea</groupId>
         <artifactId>application</artifactId>
         <version>${project.version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>com.tomasbozzo.hea</groupId>
+        <artifactId>test-common</artifactId>
+        <version>${project.version}</version>
+        <scope>test</scope>
       </dependency>
 
       <!-- Spring Boot -->
